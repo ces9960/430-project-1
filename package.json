@@ -14,7 +14,8 @@
   },
   "scripts": {
     "pretest": "eslint ./src --fix",
-    "test": "echo \"Tests complete\""
+    "test": "echo \"Tests complete\"",
+    "nodemon":"nodemon ./src/index.js -e js,html,css"
   },
   "repository": {
     "type": "git",

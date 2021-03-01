@@ -8,11 +8,11 @@ const htmlHandler = require('./htmlResponses.js');
 const responseHandler = require('./responses.js');
 
 const urlStruct = {
-  './': htmlHandler.getIndexResponse,
-  './class-browser': htmlHandler.getClassBrowserClientResponse,
-  './saved-classes': htmlHandler.getSavedClassesResponse,
-  './admin': htmlHandler.getAdminResponse,
-  './filtered-classes': responseHandler.getClassBrowserClientResponse,
+  '/': htmlHandler.getIndexResponse,
+  '/class-browser': htmlHandler.getClassBrowserClientResponse,
+  '/saved-classes': htmlHandler.getSavedClassesResponse,
+  '/admin': htmlHandler.getAdminResponse,
+  '/filtered-classes': responseHandler.getClassBrowserClientResponse,
   notFound: htmlHandler.get404Response,
 };
 
@@ -21,7 +21,7 @@ const onRequest = (request, response) => {
   const { pathname } = parsedUrl;
 
   const params = query.parse(parsedUrl.query);
-  let acceptedTypes = request.headers.accept && request.headers.split(',');
+  let acceptedTypes = request.headers.accept && request.headers.accept.split(',');
   acceptedTypes = acceptedTypes || [];
 
   if (urlStruct[pathname]) {

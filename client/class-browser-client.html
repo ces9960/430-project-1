@@ -2,15 +2,162 @@
 <head>
     <title>Class Browser</title>
     <script>
+        const handleResponse = (e) =>{
+            const obj = JSON.parse(e.target.response);
+            document.querySelector("#classDisplay").innerHTML = "";
+            for(let i = 0; i < obj.length; i += 1){
+                document.querySelector("#classDisplay").innerHTML += `<h2>${obj[i].name}</h2>
+                <ul>
+                    <li>Category: ${obj[i].category}</li>
+                    <li>BAB: ${obj[i].bab}</li>
+                    <li>Good Fortitude Save: ${obj[i].fortSave}</li>
+                    <li>Good Reflex Save: ${obj[i].refSave}</li>
+                    <li>Good Will Save: ${obj[i].willSave}</li>
+                    <li>Skill Points: ${obj[i].skillPoints}</li>
+                    <li>Spell Levels: ${obj[i].spellLevels}</li>
+                    <li>Casting Stat: ${obj[i].castingStat}</li>
+                    <li>Casting Source: ${obj[i].castingSource}</li>
+                    <li>Casting Type: ${obj[i].castingType}</li>
+                    <li>Weapon Proficiency: ${obj[i].weaponProf}</li>
+                    <li>Armor Proficiency: ${obj[i].armorProf}</li>
+                    <li>Shield Proficiency: ${obj[i].shieldProf}</li>
+                    <li><a href=${obj[i].archivesLink}>Archives of Nethys Link</a></li>
+                    <li><a href=${obj[i].pfsrdLink}>D20PFSRD Link</a></li>
+                </ul>`;
+            }
+        }
 
+        const filterClasses = (e) => {
+            const filterURL = `/filtered-classes&bab=${document.querySelector("#babSelect").value}&fortSave=${document.querySelector("#fortSelect").value}&refSave=${document.querySelector("#refSelect").value}&willSave=${document.querySelector("#willSelect").value}&skillPoints=${document.querySelector("#skillSelect").value}&spellLevels=${document.querySelector("#levelSelect").value}&castingStat=${document.querySelector("#statSelect").value}&castingSource=${document.querySelector("#sourceSelect").value}&castingType=${document.querySelector("#typeSelect").value}&weaponProf=${document.querySelector("#weaponSelect").value}&armorProf=${document.querySelector("#armorSelect").value}&shieldProf=${document.querySelector("#shieldSelect").value}&category=${document.querySelector("#categorySelect").value}`;
+
+            const xhr = new XMLHttpRequest();
+            xhr.onload = handleResponse;
+            xhr.open("GET",filterURL);
+
+            xhr.setRequestHeader('Accept','application/javascript');
+            xhr.send();
+        }
+
+        const init = () => {
+            document.querySelector("#filterButton").onclick = filterClasses;
+        }
     </script>
 </head>
 <body>
+    <h1>Class Browser</h1>
+    <div id="filterInputs">
+        <h2>Filter Classes</h2>
+        <label for="categorySelect">Category</label>
+        <select name="categorySelect" id="categorySelect">
+            <option value="Any">Any</option>
+            <option value="Core">Core</option>
+            <option value="Base">Base</option>
+            <option value="Alternate">Alternate</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="Unchained">Unchained</option>
+            <option value="Occult">Occult</option>
+        </select>
+        <label for="babSelect">BAB</label>
+        <select name="babSelect" id="babSelect">
+            <option value="Any">Any</option>
+            <option value="1">1</option>
+            <option value="3/4">3/4</option>
+            <option value="1/2">1/2</option>
+        </select>
+        <label for="skillSelect">Skill Points</label>
+        <select name="skillSelect" id="skillSelect">
+            <option value="Any">Any</option>
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="8">8</option>
+        </select>
+        <h3>Saves</h3>
+        <label for="fortSelect">Fortitude Save</label>
+        <select name="fortSelect" id="fortSelect">
+            <option value="Any">Any</option>
+            <option value="Good">Good</option>
+            <option value="Bad">Bad</option>
+        </select>
+        <label for="refSelect">Reflex Save</label>
+        <select name="refSelect" id="refSelect">
+            <option value="Any">Any</option>
+            <option value="Good">Good</option>
+            <option value="Bad">Bad</option>
+        </select>
+        <label for="willSelect">Will Save</label>
+        <select name="willSelect" id="willSelect">
+            <option value="Any">Any</option>
+            <option value="Good">Good</option>
+            <option value="Bad">Bad</option>
+        </select>
+        <h3>Casting</h3>
+        <label for="levelSelect">Spell Levels</label>
+        <select name="levelSelect" id="levelSelect">
+            <option value="Any">Any</option>
+            <option value="0">0</option>
+            <option value="4">4</option>
+            <option value="6">6</option>
+            <option value="9">9</option>
+        </select>
+        <label for="statSelect">Casting Stat</label>
+        <select name="statSelect" id="statSelect">
+            <option value="Any">Any</option>
+            <option value="None">None</option>
+            <option value="Intelligence">Intelligence</option>
+            <option value="Wisdom">Wisdom</option>
+            <option value="Charisma">Charisma</option>
+        </select>
+        <label for="sourceSelect">Casting Source</label>
+        <select name="sourceSelect" id="sourceSelect">
+            <option value="Any">Any</option>
+            <option value="None">None</option>
+            <option value="Arcane">Arcane</option>
+            <option value="Divine">Divine</option>
+            <option value="Alchemical">Alchemical</option>
+            <option value="Psychic">Psychic</option>
+        </select>
+        <label for="typeSelect">Casting Type</label>
+        <select name="typeSelect" id="typeSelect">
+            <option value="Any">Any</option>
+            <option value="None">None</option>
+            <option value="Prepared">Prepared</option>
+            <option value="Spontaneous">Spontaneous</option>
+            <option value="Hybrid">Hybrid</option>
+        </select>
+        <h3>Proficiencies</h3>
+        <label for="weaponSelect">Weapon Proficiencies</label>
+        <select name="weaponSelect" id="weaponSelect">
+            <option value="Any">Any</option>
+            <option value="Some simple">Some Simple</option>
+            <option value="Simple">Simple</option>
+            <option value="Simple and some martial">Simple and some Martial</option>
+            <option value="Simple and deity\'s favored weapon">Simple and Deity's Favored Weapon</option>
+            <option value="Martial">Martial</option>
+        </select>
+        <label for="armorSelect">Armor Proficiency</label>
+        <select name="armorSelect" id="armorSelect">
+            <option value="Any">Any</option>
+            <option value="None">None</option>
+            <option value="Light">Light</option>
+            <option value="Medium">Medium</option>
+            <option value="Heavy">Heavy</option>
+        </select>
+        <label for="shieldSelect">Shield Proficiency</label>
+        <select name="shieldSelect" id="shieldSelect">
+            <option value="Any">Any</option>
+            <option value="None">None</option>
+            <option value="Buckler">Buckler</option>
+            <option value="All except tower shields">All except Tower Shields</option>
+            <option value="All">All</option>
+        </select>
+        <p><button id="filterButton">Filter Classes</button></p>
+    </div>
     <div id="classDisplay">
-        
+
     </div>
     <p>
-        <a href='./index.html'>Back to the index</a>
+        <a href='./'>Back to the index</a>
     </p>
 </body>
 </html>

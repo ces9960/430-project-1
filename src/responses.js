@@ -2,12 +2,12 @@
 const characterClasses = [
   {
     name: 'Fighter',
-    bab: 1,
-    goodFort: true,
-    goodRef: false,
-    goodWill: false,
-    skillPoints: 2,
-    spellLevels: 0,
+    bab: '1',
+    fortSave: 'Good',
+    refSave: 'Bad',
+    willSave: 'Bad',
+    skillPoints: '2',
+    spellLevels: '0',
     castingStat: 'None',
     castingSource: 'None',
     castingType: 'None',
@@ -20,12 +20,12 @@ const characterClasses = [
   },
   {
     name: 'Cleric',
-    bab: 3 / 4,
-    goodFort: true,
-    goodRef: false,
-    goodWill: true,
-    skillPoints: 2,
-    spellLevels: 9,
+    bab: '3/4',
+    fortSave: 'Good',
+    refSave: 'Bad',
+    willSave: 'Good',
+    skillPoints: '2',
+    spellLevels: '9',
     castingStat: 'Wisdom',
     castingSource: 'Divine',
     castingType: 'Prepared',
@@ -38,12 +38,12 @@ const characterClasses = [
   },
   {
     name: 'Rogue',
-    bab: 3 / 4,
-    goodFort: false,
-    goodRef: true,
-    goodWill: false,
-    skillPoints: 8,
-    spellLevels: 0,
+    bab: '3/4',
+    fortSave: 'Bad',
+    refSave: 'Good',
+    willSave: 'Bad',
+    skillPoints: '8',
+    spellLevels: '0',
     castingStat: 'None',
     castingSource: 'None',
     castingType: 'None',
@@ -56,12 +56,12 @@ const characterClasses = [
   },
   {
     name: 'Wizard',
-    bab: 1 / 2,
-    goodFort: false,
-    goodRef: false,
-    goodWill: true,
-    skillPoints: 2,
-    spellLevels: 9,
+    bab: '1/2',
+    fortSave: 'Bad',
+    refSave: 'Bad',
+    willSave: 'Bad',
+    skillPoints: '2',
+    spellLevels: '9',
     castingStat: 'Intelligence',
     castingSource: 'Arcane',
     castingType: 'Prepared',
@@ -86,11 +86,11 @@ const compareFields = (filterField, classField) => {
 const filtersMatch = (filterObj, comparedClass) => {
   if (!compareFields(compareFields(filterObj.bab, comparedClass.bab))) {
     return false;
-  } if (!compareFields(compareFields(filterObj.goodFort, comparedClass.goodFort))) {
+  } if (!compareFields(compareFields(filterObj.fortSave, comparedClass.fortSave))) {
     return false;
-  } if (!compareFields(compareFields(filterObj.goodRef, comparedClass.goodRef))) {
+  } if (!compareFields(compareFields(filterObj.refSave, comparedClass.refSave))) {
     return false;
-  } if (!compareFields(compareFields(filterObj.goodWill, comparedClass.goodWill))) {
+  } if (!compareFields(compareFields(filterObj.willSave, comparedClass.willSave))) {
     return false;
   } if (!compareFields(compareFields(filterObj.skillPoints, comparedClass.skillPoints))) {
     return false;

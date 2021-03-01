@@ -1,10 +1,10 @@
 const fs = require('fs');
 
-const adminPage = fs.readFile(`${__dirname}/../client/admin-page.html`);
-const classBrowserPage = fs.readFile(`${__dirname}/../client/class-browser-client.html`);
-const errorPage = fs.readFile(`${__dirname}/../client/error-page.html`);
-const indexPage = fs.readFile(`${__dirname}/../client/index.html`);
-const savedClassesPage = fs.readFile(`${__dirname}/../client/saved-classes-client.html`);
+const adminPage = fs.readFileSync(`${__dirname}/../client/admin-page.html`);
+const classBrowserPage = fs.readFileSync(`${__dirname}/../client/class-browser-client.html`);
+const errorPage = fs.readFileSync(`${__dirname}/../client/error-page.html`);
+const indexPage = fs.readFileSync(`${__dirname}/../client/index.html`);
+const savedClassesPage = fs.readFileSync(`${__dirname}/../client/saved-classes-client.html`);
 
 const getAdminResponse = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
