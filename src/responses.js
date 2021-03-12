@@ -76,10 +76,6 @@ const characterClasses = [
 
 // quick function to compare fields of 2 objects while sorting out unfiltered fields
 const compareFields = (filterField, classField) => {
-  /*if (filterField === 'Any' || filterField === classField || !filterField) {
-    return true;
-  }
-  return false;*/
   return (filterField === 'Any' || filterField === classField || !filterField);
 };
 

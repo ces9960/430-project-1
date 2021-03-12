@@ -2,6 +2,7 @@
 <head>
     <title>Class Browser</title>
     <script>
+
         const handleResponse = (e) =>{
             const obj = JSON.parse(e.target.response);
             document.querySelector("#classDisplay").innerHTML = "";
@@ -10,9 +11,9 @@
                 <ul>
                     <li>Category: ${obj[i].category}</li>
                     <li>BAB: ${obj[i].bab}</li>
-                    <li>Good Fortitude Save: ${obj[i].fortSave}</li>
-                    <li>Good Reflex Save: ${obj[i].refSave}</li>
-                    <li>Good Will Save: ${obj[i].willSave}</li>
+                    <li>Fortitude Save: ${obj[i].fortSave}</li>
+                    <li>Reflex Save: ${obj[i].refSave}</li>
+                    <li>Will Save: ${obj[i].willSave}</li>
                     <li>Skill Points: ${obj[i].skillPoints}</li>
                     <li>Spell Levels: ${obj[i].spellLevels}</li>
                     <li>Casting Stat: ${obj[i].castingStat}</li>
@@ -41,6 +42,8 @@
         const init = () => {
             document.querySelector("#filterButton").onclick = filterClasses;
         }
+
+        window.onload = init;
     </script>
 </head>
 <body>
