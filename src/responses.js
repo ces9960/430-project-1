@@ -145,7 +145,7 @@ const characterClasses = [
     pfsrdLink:'https://www.d20pfsrd.com/classes/hybrid-classes/brawler'
   },
   {
-    name:'Cavailer',
+    name:'Cavalier',
     bab:'1',
     fortSave:'Good',
     refSave:'Bad',
