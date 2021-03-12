@@ -29,7 +29,7 @@ const characterClasses = [
     castingStat: 'Wisdom',
     castingSource: 'Divine',
     castingType: 'Prepared',
-    weaponProf: 'Simple and deity\'s favored weapon',
+    weaponProf: 'Simple and Favored Weapon',
     armorProf: 'Medium',
     shieldProf: 'All except tower shields',
     category: 'Core',
