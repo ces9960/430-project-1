@@ -28,7 +28,7 @@
         }
 
         const filterClasses = (e) => {
-            const filterURL = `/filtered-classes&bab=${document.querySelector("#babSelect").value}&fortSave=${document.querySelector("#fortSelect").value}&refSave=${document.querySelector("#refSelect").value}&willSave=${document.querySelector("#willSelect").value}&skillPoints=${document.querySelector("#skillSelect").value}&spellLevels=${document.querySelector("#levelSelect").value}&castingStat=${document.querySelector("#statSelect").value}&castingSource=${document.querySelector("#sourceSelect").value}&castingType=${document.querySelector("#typeSelect").value}&weaponProf=${document.querySelector("#weaponSelect").value}&armorProf=${document.querySelector("#armorSelect").value}&shieldProf=${document.querySelector("#shieldSelect").value}&category=${document.querySelector("#categorySelect").value}`;
+            const filterURL = `/filtered-classes?bab=${document.querySelector("#babSelect").value}&fortSave=${document.querySelector("#fortSelect").value}&refSave=${document.querySelector("#refSelect").value}&willSave=${document.querySelector("#willSelect").value}&skillPoints=${document.querySelector("#skillSelect").value}&spellLevels=${document.querySelector("#levelSelect").value}&castingStat=${document.querySelector("#statSelect").value}&castingSource=${document.querySelector("#sourceSelect").value}&castingType=${document.querySelector("#typeSelect").value}&weaponProf=${document.querySelector("#weaponSelect").value}&armorProf=${document.querySelector("#armorSelect").value}&shieldProf=${document.querySelector("#shieldSelect").value}&category=${document.querySelector("#categorySelect").value}`;
 
             const xhr = new XMLHttpRequest();
             xhr.onload = handleResponse;

@@ -59,7 +59,7 @@ const characterClasses = [
     bab: '1/2',
     fortSave: 'Bad',
     refSave: 'Bad',
-    willSave: 'Bad',
+    willSave: 'Good',
     skillPoints: '2',
     spellLevels: '9',
     castingStat: 'Intelligence',
@@ -76,39 +76,41 @@ const characterClasses = [
 
 // quick function to compare fields of 2 objects while sorting out unfiltered fields
 const compareFields = (filterField, classField) => {
-  if (filterField === 'Any' || filterField === classField) {
+  /*if (filterField === 'Any' || filterField === classField || !filterField) {
     return true;
   }
-  return false;
+  return false;*/
+  return (filterField === 'Any' || filterField === classField || !filterField);
 };
 
 // a bunch of calls to compareFields(), so I only have to have one instance of this block of text
 const filtersMatch = (filterObj, comparedClass) => {
-  if (!compareFields(compareFields(filterObj.bab, comparedClass.bab))) {
+  
+  if (!compareFields(filterObj.bab, comparedClass.bab)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.fortSave, comparedClass.fortSave))) {
+  } if (!compareFields(filterObj.fortSave, comparedClass.fortSave)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.refSave, comparedClass.refSave))) {
+  } if (!compareFields(filterObj.refSave, comparedClass.refSave)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.willSave, comparedClass.willSave))) {
+  } if (!compareFields(filterObj.willSave, comparedClass.willSave)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.skillPoints, comparedClass.skillPoints))) {
+  } if (!compareFields(filterObj.skillPoints, comparedClass.skillPoints)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.spellLevels, comparedClass.spellLevels))) {
+  } if (!compareFields(filterObj.spellLevels, comparedClass.spellLevels)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.castingStat, comparedClass.castingStat))) {
+  } if (!compareFields(filterObj.castingStat, comparedClass.castingStat)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.castingSource, comparedClass.castingSource))) {
+  } if (!compareFields(filterObj.castingSource, comparedClass.castingSource)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.castingType, comparedClass.castingType))) {
+  } if (!compareFields(filterObj.castingType, comparedClass.castingType)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.weaponProf, comparedClass.weaponProf))) {
+  } if (!compareFields(filterObj.weaponProf, comparedClass.weaponProf)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.armorProf, comparedClass.armorProf))) {
+  } if (!compareFields(filterObj.armorProf, comparedClass.armorProf)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.shieldProf, comparedClass.shieldProf))) {
+  } if (!compareFields(filterObj.shieldProf, comparedClass.shieldProf)) {
     return false;
-  } if (!compareFields(compareFields(filterObj.category, comparedClass.category))) {
+  } if (!compareFields(filterObj.category, comparedClass.category)) {
     return false;
   }
   return true;
@@ -116,8 +118,8 @@ const filtersMatch = (filterObj, comparedClass) => {
 
 // receives an object with properties based on what the user submits
 const returnFilteredClasses = (filterParams) => {
-  const arrayToReturn = [];
-  for (let i = 0; i < characterClasses; i += 1) {
+  let arrayToReturn = [];
+  for (let i = 0; i < characterClasses.length; i += 1) {
     if (filtersMatch(filterParams, characterClasses[i])) {
       arrayToReturn.push(characterClasses[i]);
     }
@@ -127,6 +129,8 @@ const returnFilteredClasses = (filterParams) => {
 
 const getClassBrowserClientResponse = (request, response, params, acceptedTypes, httpMethod) => {
   const responseObj = returnFilteredClasses(params);
+
+
   if (acceptedTypes.includes('text/xml')) {
     // responseXML will do things in a later version
     const responseXML = '';
