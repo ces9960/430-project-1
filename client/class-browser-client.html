@@ -2,10 +2,11 @@
 <head>
     <title>Class Browser</title>
     <script>
-
+        let selectedClasses = [];
         const handleResponse = (e) =>{
             const obj = JSON.parse(e.target.response);
             document.querySelector("#classDisplay").innerHTML = "";
+            document.querySelector("#classSelect").innerHTML = "";
             for(let i = 0; i < obj.length; i += 1){
                 document.querySelector("#classDisplay").innerHTML += `<h2>${obj[i].name}</h2>
                 <ul>
@@ -25,6 +26,7 @@
                     <li><a href=${obj[i].archivesLink}>Archives of Nethys Link</a></li>
                     <li><a href=${obj[i].pfsrdLink}>D20PFSRD Link</a></li>
                 </ul>`;
+                document.querySelector("#classSelect").innerHTML += `<option value=${obj[i].name}>${obj[i].name}</option>`;
             }
         }
 
@@ -39,8 +41,11 @@
             xhr.send();
         }
 
+
+
         const init = () => {
             document.querySelector("#filterButton").onclick = filterClasses;
+            
         }
 
         window.onload = init;
@@ -156,6 +161,22 @@
         </select>
         <p><button id="filterButton">Filter Classes</button></p>
     </div>
+        <h2>Enter a name, class, and description</h2>
+        <form id="userForm" action="/post-character" method="POST">
+            <label for="userName">Name</label>
+            <br/>
+            <input type="text" id="userName" name="Name"></input>
+            <br/>
+            <label for="classSelect">Class</label>
+            <br/>
+            <select id="classSelect" name="Class"></select>
+            <br/>
+            <label for="characterDescription">Description</label>
+            <br/>
+            <textarea id="characterDescription" name="characterDescription" rows="8" cols="40"> </textarea>
+            <br/>
+            <input type="submit" value="Submit">
+        </form>
     <div id="classDisplay">
 
     </div>

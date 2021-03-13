@@ -4,7 +4,7 @@ const adminPage = fs.readFileSync(`${__dirname}/../client/admin-page.html`);
 const classBrowserPage = fs.readFileSync(`${__dirname}/../client/class-browser-client.html`);
 const errorPage = fs.readFileSync(`${__dirname}/../client/error-page.html`);
 const indexPage = fs.readFileSync(`${__dirname}/../client/index.html`);
-const savedClassesPage = fs.readFileSync(`${__dirname}/../client/saved-classes-client.html`);
+const savedCharactersPage = fs.readFileSync(`${__dirname}/../client/saved-characters-client.html`);
 
 const getAdminResponse = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -26,9 +26,9 @@ const getIndexResponse = (request, response) => {
   response.write(indexPage);
   response.end();
 };
-const getSavedClassesResponse = (request, response) => {
+const getSavedCharactersResponse = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
-  response.write(savedClassesPage);
+  response.write(savedCharactersPage);
   response.end();
 };
 
@@ -37,5 +37,5 @@ module.exports = {
   getAdminResponse,
   getClassBrowserClientResponse,
   getIndexResponse,
-  getSavedClassesResponse,
+  getSavedCharactersResponse,
 };

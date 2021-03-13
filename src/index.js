@@ -10,9 +10,11 @@ const responseHandler = require('./responses.js');
 const urlStruct = {
   '/': htmlHandler.getIndexResponse,
   '/class-browser': htmlHandler.getClassBrowserClientResponse,
-  '/saved-classes': htmlHandler.getSavedClassesResponse,
+  '/saved-characters': htmlHandler.getSavedCharactersResponse,
   '/admin': htmlHandler.getAdminResponse,
   '/filtered-classes': responseHandler.getClassBrowserClientResponse,
+  '/get-characters': responseHandler.getCharacters,
+  '/post-character': responseHandler.postCharacterResponse,
   notFound: htmlHandler.get404Response,
 };
 
