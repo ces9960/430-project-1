@@ -2,11 +2,41 @@
 <html>
     <head>
         <title>Saved Characters</title>
+        <script>
+            const handleCharacterResponse = (e) => {
+                const obj = JSON.parse(e.target.response);
+                document.querySelector('#characters').innerHTML = '';
+                const objAsKeys = Object.keys(obj);
+                for(let i = 0; i < objAsKeys.length; i += 1){
+                    document.querySelector('#characters').innerHTML += `
+                    <p>
+                        <ul>
+                            <li>Name: ${obj[objAsKeys[i]].Name}</li>
+                            <p>Class: ${obj[objAsKeys[i]].Class}</p>
+                            <p>Description: ${obj[objAsKeys[i]].characterDescription}</p>
+                            <br/>
+                        </ul>
+                    </p>
+                    `
+                }
+            }
+
+            const loadCharacters = (e) => {
+                const xhr = new XMLHttpRequest();
+                xhr.onload = handleCharacterResponse;
+                xhr.open('GET','/get-characters');
+                xhr.setRequestHeader('Accept','application/javascript');
+                xhr.send();
+            }
+            window.onload = loadCharacters;   
+        </script>
     </head>
     <body>
         <h1>Saved Characters</h1>
         <p>
             <a href='./'>Back to the index</a>
         </p>
+        <div id="characters">
+        </div>
     </body>
 </html>
