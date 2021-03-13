@@ -1,1 +1,25 @@
-/*Something will go here at some point*/
+body{
+    background-color: lightblue;
+    font-family: sans-serif;
+    margin-left: 5%;
+}
+
+h1{
+    margin-bottom: 3%;
+}
+
+h2{
+    margin-top: 2%;
+}
+h3{
+    margin-top: 1%;
+}
+form{
+    margin-bottom: 1%
+}
+input{
+    margin-bottom:5px;
+}
+select{
+    margin-bottom: 5px;
+}

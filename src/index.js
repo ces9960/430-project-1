@@ -11,10 +11,12 @@ const urlStruct = {
   '/': htmlHandler.getIndexResponse,
   '/class-browser': htmlHandler.getClassBrowserClientResponse,
   '/saved-characters': htmlHandler.getSavedCharactersResponse,
-  '/admin': htmlHandler.getAdminResponse,
+  '/image-page': htmlHandler.getImageResponse,
   '/filtered-classes': responseHandler.getClassBrowserClientResponse,
   '/get-characters': responseHandler.getCharacters,
   '/post-character': responseHandler.postCharacterResponse,
+  '/image-file': htmlHandler.getImageFileResponse,
+  '/stylesheet': htmlHandler.getStylesheetResponse,
   notFound: htmlHandler.get404Response,
 };
 
@@ -25,6 +27,27 @@ const onRequest = (request, response) => {
   const params = query.parse(parsedUrl.query);
   let acceptedTypes = request.headers.accept && request.headers.accept.split(',');
   acceptedTypes = acceptedTypes || [];
+
+  if (request.method === 'POST') {
+    if (parsedUrl.pathname === '/post-character') {
+      const body = [];
+
+      request.on('error', (err) => {
+        console.dir(err);
+        response.statusCode = 400;
+        response.end();
+      });
+      response.on('data', (chunk) => {
+        body.push(chunk);
+      });
+      response.on('end', () => {
+        const bodyString = Buffer.concat(body).toString();
+        const bodyParams = query.parse(bodyString);
+        responseHandler.postCharacterResponse(request, response, bodyParams);
+      });
+    }
+    return;
+  }
 
   if (urlStruct[pathname]) {
     urlStruct[pathname](request, response, params, acceptedTypes, request.method);

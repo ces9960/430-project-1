@@ -893,12 +893,14 @@ const postCharacterResponse = (request, response, body) => {
     response.write(JSON.stringify({
       id: 'missingParams',
       message: 'Character needs a name, class, and description',
+      foo: body,
     }));
     response.end();
   } else if (users[body.Name]) {
     response.writeHead(204, { 'Content-Type': 'application.json' });
     users[body.Name].Class = body.Class;
     users[body.Name].characterDescription = body.characterDescription;
+    response.end();
   } else {
     users[body.Name] = {};
     users[body.Name].Name = body.Name;

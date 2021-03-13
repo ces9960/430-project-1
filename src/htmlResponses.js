@@ -1,14 +1,16 @@
 const fs = require('fs');
 
-const adminPage = fs.readFileSync(`${__dirname}/../client/admin-page.html`);
+const imagePage = fs.readFileSync(`${__dirname}/../client/image-page.html`);
 const classBrowserPage = fs.readFileSync(`${__dirname}/../client/class-browser-client.html`);
 const errorPage = fs.readFileSync(`${__dirname}/../client/error-page.html`);
 const indexPage = fs.readFileSync(`${__dirname}/../client/index.html`);
 const savedCharactersPage = fs.readFileSync(`${__dirname}/../client/saved-characters-client.html`);
+const imageFile = fs.readFileSync(`${__dirname}/../client/media/p1-image.png`);
+const stylesheetFile = fs.readFileSync(`${__dirname}/../client/default-styles.css`);
 
-const getAdminResponse = (request, response) => {
+const getImageResponse = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
-  response.write(adminPage);
+  response.write(imagePage);
   response.end();
 };
 const getClassBrowserClientResponse = (request, response) => {
@@ -32,10 +34,24 @@ const getSavedCharactersResponse = (request, response) => {
   response.end();
 };
 
+const getImageFileResponse = (request, response) => {
+  response.writeHead(200, { 'Content-Type': 'image/png' });
+  response.write(imageFile);
+  response.end();
+};
+
+const getStylesheetResponse = (request, response) => {
+  response.writeHead(200, { 'Content-Type': 'text/css' });
+  response.write(stylesheetFile);
+  response.end();
+};
+
 module.exports = {
   get404Response,
-  getAdminResponse,
+  getImageResponse,
   getClassBrowserClientResponse,
   getIndexResponse,
   getSavedCharactersResponse,
+  getImageFileResponse,
+  getStylesheetResponse,
 };
